@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Conexión a la BD -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/turnito_db?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+
+        <!-- Dialecto -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- Mostrar SQL en consola -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Actualizar tablas automáticamente -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Clases anotadas -->
+        <!-- Agregaremos las entidades acá más adelante -->
+    </session-factory>
+</hibernate-configuration>
