@@ -1,6 +1,5 @@
 package com.turnito;
 
-import com.turnito.modelo.Cliente;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

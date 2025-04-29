@@ -1,4 +1,4 @@
 package com.turnito.modelo;
 
-public class Prestador {
+public class Usuario {
 }
