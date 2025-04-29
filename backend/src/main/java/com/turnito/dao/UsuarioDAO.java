@@ -1,4 +1,4 @@
 package com.turnito.dao;
 
-public class PrestadorDAO {
+public class UsuarioDAO {
 }
