@@ -9,7 +9,7 @@
 
         <!-- Conexión a la BD -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/turnito_db?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="connection.url">jdbc:mysql://localhost/turnito_db</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
 
@@ -25,5 +25,6 @@
         <!-- Clases anotadas -->
         <!-- Agregaremos las entidades acá más adelante -->
         <mapping resource = "mapeo/Servicio.hbm.xml"/>
+        <mapping resource = "mapeo/Usuario.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

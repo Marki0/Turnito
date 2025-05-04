@@ -1,6 +1,9 @@
 package com.turnito.dao;
 
 import com.turnito.modelo.Administrador;
+
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -28,17 +31,18 @@ public class AdministradorDAO {
     
     // AGREGAR ADMIN
     public int agregar(Administrador administrador) {
-    	int id = 0;
+        int id = 0;
         try {
             iniciaOperacion();
-            id = Integer.parseInt(session.save(administrador).toString());  // En caso de que no exista lo guardamos
+            // Devuelve el ID generado automaticamente
+            id = (int) session.save(administrador);  // El ID es generado automaticamente
             tx.commit();  // Confirmamos la transaccion
         } catch (HibernateException he) {
             manejaExcepcion(he);
         } finally {
             session.close();  // Cerramos la sesion
         }
-        return id;  // Devolvemos el ID del Administrador insertado
+        return id;  // Devolvemos el ID generado por Hibernate
     }
     
     // TRAER ADMIN POR ID
@@ -51,6 +55,20 @@ public class AdministradorDAO {
             session.close();  // Cerramos la sesion
         }
         return administrador;  // Devolvemos el objeto encontrado
+    }
+    
+    // Traemos segun el correo
+    public Administrador traerPorCorreo(String email) {
+        Administrador administrador = null;
+        try {
+            iniciaOperacion();
+            administrador = (Administrador) session.createQuery("from Administrador a where a.email = :email")
+                    .setParameter("email", email)  // Buscamos por correo
+                    .uniqueResult();
+        } finally {
+            session.close();  // Cerramos la sesión
+        }
+        return administrador;  // Devolvemos el Administrador encontrado
     }
     
     // TRAEMOS ADMIN POR NOMBRE 
@@ -67,19 +85,31 @@ public class AdministradorDAO {
         return administrador;  // Devolvemos el Administrador encontrado
     }
     
-    // BUSCAMOS POR NOMBRE Y SECTOR
-    public Administrador traer(String nombre, String sector) {
-        Administrador administrador = null;
+    // BUSCAMOS SECTOR
+    public List<Administrador> traerPorSector(String sector) {
+        List<Administrador> administradores = null;
         try {
             iniciaOperacion();
-            administrador = (Administrador) session.createQuery("from Administrador a where a.nombre = :nombre and a.sector = :sector")
-                    .setParameter("nombre", nombre)
-                    .setParameter("sector", sector)  // Buscamos por nombre y sector
-                    .uniqueResult();
+            administradores = session.createQuery("from Administrador a where a.sector = :sector", Administrador.class)
+                    .setParameter("sector", sector)
+                    .list();
         } finally {
-            session.close();  // Cerramos la sesion
+            session.close();
         }
-        return administrador;  // Devolvemos el Administrador encontrado
+        return administradores;
+    }
+
+    
+ // TRAER TODOS LOS ADMINISTRADORES
+    public List<Administrador> traer() {
+        List<Administrador> administradores = null;
+        try {
+            iniciaOperacion();
+            administradores = session.createQuery("from Administrador", Administrador.class).list(); // Consulta todos los administradores
+        } finally {
+            session.close();
+        }
+        return administradores; // Devuelve la lista de administradores
     }
     
     // Metodo para actualizar admin

@@ -19,6 +19,4 @@ public class Administrador extends Usuario {
 		return "Administrador [" + super.toString()+ "sector=" + sector + "]";
 	}
 	
-    
-    
 }
