@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "D:\Program Files\eclipse\Turnito\backend\src\main\resources\hibernate-mapping-3.0.dtd"><hibernate-mapping>
+<class name="com.turnito.modelo.Servicio" table="servicio">
+		<id column="id" name="id">
+			<generator class="identity" />
+		</id>
+		<property column="nombre" name="nombre" type="string" />
+		<property column="duracion" name="duracion" type="int" />
+		<property column="estado" name="estado" type="boolean" />
+		<property column="horario" name="horario" type="LocalTime" />
+	</class>
+</hibernate-mapping>
