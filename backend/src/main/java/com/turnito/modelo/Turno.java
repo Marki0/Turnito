@@ -2,35 +2,44 @@ package com.turnito.modelo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.persistence.Entity;
 
+@Entity
 public class Turno {
-    private int Id;
+    private int id;
     private LocalDate fecha;
     private LocalTime hora;
     private boolean estado;
     private String direccion;
-    private int profesional_id;
-    private int servicio_id;
-    private int solicitante_id;
 
+    // Relacionados como objetos
+    private Profesional profesional;
+    private Servicio servicio;
+    private Solicitante solicitante;
 
-    public Turno(int id, LocalDate fecha, LocalTime hora, boolean estado, String direccion,int profesional_id,int servicio_id,int solicitante_id) {
-        Id = id;
+    public Turno() {
+        // Constructor vacío necesario para Hibernate
+    }
+
+    public Turno(int id, LocalDate fecha, LocalTime hora, boolean estado, String direccion,
+                 Profesional profesional, Servicio servicio, Solicitante solicitante) {
+        this.id = id;
         this.fecha = fecha;
         this.hora = hora;
         this.estado = estado;
         this.direccion = direccion;
-        this.profesional_id = profesional_id;
-        this.servicio_id = servicio_id;
-        this.solicitante_id = solicitante_id;
+        this.profesional = profesional;
+        this.servicio = servicio;
+        this.solicitante = solicitante;
     }
 
+    // Getters y Setters
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public LocalDate getFecha() {
@@ -65,31 +74,41 @@ public class Turno {
         this.direccion = direccion;
     }
 
-    public int getProfesional_id() {
-        return profesional_id;
+    public Profesional getProfesional() {
+        return profesional;
     }
 
-    public void setProfesional_id(int profesional_id) {
-        this.profesional_id = profesional_id;
+    public void setProfesional(Profesional profesional) {
+        this.profesional = profesional;
     }
 
-    public int getServicio_id() {
-        return servicio_id;
+    public Servicio getServicio() {
+        return servicio;
     }
 
-    public void setServicio_id(int servicio_id) {
-        this.servicio_id = servicio_id;
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
     }
 
-    public int getSolicitante_id() {
-        return solicitante_id;
+    public Solicitante getSolicitante() {
+        return solicitante;
     }
 
-    public void setSolicitante_id(int solicitante_id) {
-        this.solicitante_id = solicitante_id;
+    public void setSolicitante(Solicitante solicitante) {
+        this.solicitante = solicitante;
     }
 
-
+    @Override
+    public String toString() {
+        return "Turno{" +
+                "id=" + id +
+                ", fecha=" + fecha +
+                ", hora=" + hora +
+                ", estado=" + estado +
+                ", direccion='" + direccion + '\'' +
+                ", profesional=" + profesional +
+                ", servicio=" + servicio +
+                ", solicitante=" + solicitante +
+                '}';
+    }
 }
-
-
