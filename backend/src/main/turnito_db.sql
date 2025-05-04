@@ -53,8 +53,9 @@ CREATE TABLE Profesional_Servicio (
 );
 -- Tabla Turno
 CREATE TABLE Turno (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    fecha_hora DATETIME NOT NULL,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
     estado VARCHAR(50),
     direccion VARCHAR(255),
     profesional_id INT NOT NULL,
