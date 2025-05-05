@@ -10,8 +10,8 @@ public class Profesional extends Usuario{
 	
     public Profesional() {}
 
-	public Profesional(String nombre, String email, String telefono, long dni, String especialidad, String matricula) {
-		super(nombre, email, telefono, dni);
+	public Profesional(int id,String nombre, String email, String telefono, long dni, String especialidad, String matricula) {
+		super(id,nombre, email, telefono, dni);
 		this.especialidad = especialidad;
 		this.matricula = matricula;
 	}

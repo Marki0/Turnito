@@ -9,8 +9,8 @@ public class Solicitante extends Usuario {
     public Solicitante() {
 
     }
-    public Solicitante(String nombre, String email, String telefono, long dni, String motivo) {
-        super(nombre, email, telefono, dni);
+    public Solicitante(int id,String nombre, String email, String telefono, long dni, String motivo) {
+        super(id,nombre, email, telefono, dni);
         this.motivo = motivo;
     }
 
