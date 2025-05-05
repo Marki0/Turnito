@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.turnito.modelo.Usuario" table="Usuario">
+        <id name="id" column="ID">
+            <generator class="identity"/>
+        </id>
+
+        <property name="nombre" column="nombre" type="string"/>
+        <property name="email" column="email" type="string"/>
+        <property name="telefono" column="telefono" type="string"/>
+        <property name="dni" column="dni" type="long"/>
+
+
+
+        <!-- Definimos la estrategia de herencia JOINED -->
+        <joined-subclass name="com.turnito.modelo.Solicitante" table="solicitante">
+            <key column="ID"/>
+            <property name="motivo" column="motivo" type="string"/>
+        </joined-subclass>
+
+        <joined-subclass name="com.turnito.modelo.Profesional" table="profesional">
+            <key column="ID"/>
+            <property name="matricula" column="matricula" type="string"/>
+            <property name="especialidad" column="especialidad" type="string"/>
+        </joined-subclass>
+
+        <joined-subclass name="com.turnito.modelo.Administrador" table="administrador">
+            <key column="ID"/>
+            <property name="sector" column="sector" type="string"/>
+        </joined-subclass>
+
+    </class>
+</hibernate-mapping>
