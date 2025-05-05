@@ -17,3 +17,4 @@ Turnito es una aplicación web que permite a negocios o profesionales gestionar 
 - MySQL Server
 - Maven 3.6+
 - IDE recomendado: IntelliJ IDEA o Eclipse
+
