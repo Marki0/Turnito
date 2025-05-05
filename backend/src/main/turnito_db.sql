@@ -43,18 +43,19 @@ CREATE TABLE Servicio (
 );
 
 -- Tabla Profesional_Servicio (relación muchos a muchos)
+DROP TABLE IF EXISTS Profesional_Servicio;
 CREATE TABLE Profesional_Servicio (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    profesional_id INT NOT NULL,
-    servicio_id INT NOT NULL,
-    FOREIGN KEY (profesional_id) REFERENCES Profesional(ID),
-    FOREIGN KEY (servicio_id) REFERENCES Servicio(ID)
+    profesional_id INT,
+    servicio_id INT,
+    PRIMARY KEY (profesional_id, servicio_id),
+    FOREIGN KEY (profesional_id) REFERENCES Profesional(id),
+    FOREIGN KEY (servicio_id) REFERENCES Servicio(id)
 );
-
 -- Tabla Turno
 CREATE TABLE Turno (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    fecha_hora DATETIME NOT NULL,
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fecha DATE NOT NULL,
+    hora TIME NOT NULL,
     estado VARCHAR(50),
     direccion VARCHAR(255),
     profesional_id INT NOT NULL,
