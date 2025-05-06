@@ -1,57 +1,69 @@
 package com.turnito.modelo;
 
-public class Usuario {
-    private int Id;
-    private String nombre;
-    private String email;
-    private String telefono;
-    private long Dni;
-    
-	public Usuario() {
-		super();
-	}
+import javax.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
+public abstract class Usuario {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String nombre;
+	private String email;
+	private String telefono;
+	private long dni;
+
+	// Getters y setters
+
+	public Usuario() {}
+
 	public Usuario(String nombre, String email, String telefono, long dni) {
-		super();
 		this.nombre = nombre;
 		this.email = email;
 		this.telefono = telefono;
-		Dni = dni;
+		this.dni = dni;
 	}
+
 	public int getId() {
-		return Id;
+		return id;
 	}
-	protected void setId(int id) {
-		Id = id;
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getTelefono() {
 		return telefono;
 	}
+
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+
 	public long getDni() {
-		return Dni;
+		return dni;
 	}
+
 	public void setDni(long dni) {
-		Dni = dni;
+		this.dni = dni;
 	}
-	@Override
-	public String toString() {
-		return "Usuario [Id=" + Id + ", nombre=" + nombre + ", email=" + email + ", telefono=" + telefono + ", Dni="
-				+ Dni + "]";
-	}
-    
-    
+
+	// Métodos comunes
 }

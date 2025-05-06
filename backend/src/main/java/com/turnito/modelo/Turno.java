@@ -21,9 +21,9 @@ public class Turno {
         // Constructor vacío necesario para Hibernate
     }
 
-    public Turno(int id, LocalDate fecha, LocalTime hora, boolean estado, String direccion,
+    public Turno(LocalDate fecha, LocalTime hora, boolean estado, String direccion,
                  Profesional profesional, Servicio servicio, Solicitante solicitante) {
-        this.id = id;
+
         this.fecha = fecha;
         this.hora = hora;
         this.estado = estado;

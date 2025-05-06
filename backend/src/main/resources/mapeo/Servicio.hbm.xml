@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping SYSTEM "D:\Program Files\eclipse\Turnito\backend\src\main\resources\hibernate-mapping-3.0.dtd"><hibernate-mapping>
+<!DOCTYPE hibernate-mapping SYSTEM "C:\Users\Marcos\OneDrive\Escritorio\Turnito\backend\src\main\resources\hibernate-mapping-3.0.dtd"><hibernate-mapping>
 <class name="com.turnito.modelo.Servicio" table="servicio">
 		<id column="id" name="id">
 			<generator class="identity" />
