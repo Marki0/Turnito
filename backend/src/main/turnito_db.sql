@@ -8,7 +8,8 @@ CREATE TABLE Usuario (
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     telefono VARCHAR(20),
-    DNI VARCHAR(20) UNIQUE
+    DNI VARCHAR(20) UNIQUE,
+    tipo_usuario VARCHAR(50) NOT NULL -- Columna para diferenciar el tipo de usuario (Administrador, Solicitante, Profesional)
 );
 
 -- Tabla Administrador
@@ -51,6 +52,7 @@ CREATE TABLE Profesional_Servicio (
     FOREIGN KEY (profesional_id) REFERENCES Profesional(id),
     FOREIGN KEY (servicio_id) REFERENCES Servicio(id)
 );
+
 -- Tabla Turno
 CREATE TABLE Turno (
     id INT PRIMARY KEY AUTO_INCREMENT,
