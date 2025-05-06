@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import com.turnito.modelo.Profesional;
 import com.turnito.modelo.Servicio;
 
 
@@ -39,6 +40,22 @@ public class ServicioDAO {
 		}
 		return id;
 	}
+	
+	public boolean agregarProfesional(Servicio servicio, Profesional profesional) {
+	    try {
+	        iniciaOperacion();
+	        servicio.getProfesionales().add(profesional);  // agregás el profesional a la colección
+	        session.update(servicio);                       // persistís la relación en la base
+	        tx.commit();
+	        return true;
+	    } catch (HibernateException he) {
+	        manejaExcepcion(he);
+	        throw he;
+	    } finally {
+	        session.close();
+	    }
+	}
+	
 
 	public void actualizar(Servicio objeto) {
 		try {

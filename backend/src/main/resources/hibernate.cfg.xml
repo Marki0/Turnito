@@ -27,5 +27,6 @@
         <!-- <mapping resource = "mapeo/Servicio.hbm.xml"/>
          <mapping resource = "mapeo/Turno.hbm.xml"/>-->
         <mapping resource = "mapeo/Usuario.hbm.xml"/>
+        <mapping resource = "mapeo/Servicio.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

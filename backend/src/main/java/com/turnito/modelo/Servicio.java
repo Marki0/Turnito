@@ -4,6 +4,8 @@ import java.time.LocalTime;
 import java.util.Iterator;
 import java.util.Set;
 
+import com.turnito.negocio.ServicioABM;
+
 public class Servicio {
 	private int id;
 	private String nombre;
@@ -78,12 +80,9 @@ public class Servicio {
 				+ ", horario=" + horario + "]";
 	}
 	
-	public boolean agregar(Profesional profesional) {
-		boolean agregar = false;
-		if (!(profesionales.contains(profesional))) {
-			agregar = profesionales.add(profesional);
-		}
-		return agregar;
+	public boolean agregar(Profesional profesional) throws Exception {
+		ServicioABM abm = new ServicioABM();
+		return abm.agregarProfesional(id, profesional);
 	}
 
 	public boolean eliminar(Profesional profesional) {

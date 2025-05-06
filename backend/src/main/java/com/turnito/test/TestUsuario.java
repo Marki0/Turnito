@@ -14,7 +14,7 @@ public class TestUsuario {
 				abm.agregar(new Profesional("Jose","6787","22222",222222L,"AGASDK","Pediatra"));
 				System.out.println(abm.traer());
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println(e.getMessage());
 			}
 
     }
