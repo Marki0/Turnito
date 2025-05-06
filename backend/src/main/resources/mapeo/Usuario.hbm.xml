@@ -17,6 +17,11 @@
 			<key column="id" />
 			<property name="matricula" column="matricula" type="string" />
 			<property name="especialidad" column="especialidad" type="string" />
+			<set table="profesional_servicio" name="servicios" outer-join="true">
+				<key column="profesional_id" />
+				<many-to-many column="servicio_id"
+					class="com.turnito.modelo.Servicio" />
+			</set>
 		</joined-subclass>
 
 		<joined-subclass name="com.turnito.modelo.Solicitante"
@@ -34,3 +39,4 @@
 
 	</class>
 </hibernate-mapping>
+

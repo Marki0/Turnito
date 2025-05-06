@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd"><hibernate-mapping>
-<class name="com.turnito.modelo.Servicio" table="servicio">
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.turnito.modelo.Servicio" table="servicio">
 		<id column="id" name="id">
 			<generator class="identity" />
 		</id>
@@ -8,5 +9,10 @@
 		<property column="duracion" name="duracion" type="int" />
 		<property column="estado" name="estado" type="boolean" />
 		<property column="horario" name="horario" type="LocalTime" />
+		<set table="profesional_servicio" name="profesionales" outer-join="true">
+			<key column="servicio_id" />
+			<many-to-many column="profesional_id" class="com.turnito.modelo.Profesional" />
+		</set>
 	</class>
+
 </hibernate-mapping>

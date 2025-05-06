@@ -1,6 +1,8 @@
 package com.turnito.dao;
 
 import com.turnito.modelo.Profesional;
+import com.turnito.modelo.Servicio;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -28,16 +30,16 @@ public class ProfesionalDAO {
         throw new HibernateException("ERROR en DAO Profesional", he);
     }
 
-    public Profesional traer(int idProfesional) {
-        Profesional objeto = null;
-        try {
-            iniciaOperacion();
-            objeto = session.get(Profesional.class, idProfesional);
-        } finally {
-            session.close();
-        }
-        return objeto;
-    }
+	public Profesional traer(int id) {
+		Profesional objeto = null;
+		try {
+			iniciaOperacion();
+			objeto = (Profesional) session.get(Profesional.class, id);
+		} finally {
+			session.close();
+		}
+		return objeto;
+	}
 
     public List<Profesional> traerTodos() {
         List<Profesional> lista = null;

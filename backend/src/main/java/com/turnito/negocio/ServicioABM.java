@@ -1,6 +1,7 @@
 package com.turnito.negocio;
 
 import com.turnito.dao.ServicioDAO;
+import com.turnito.modelo.Profesional;
 import com.turnito.modelo.Servicio;
 
 import java.time.LocalTime;
@@ -59,6 +60,15 @@ public class ServicioABM {
 		}
 
 		dao.eliminar(servicio);
+	}
+	
+	public boolean agregarProfesional(int id,Profesional profesional)throws Exception {
+		boolean agregar = false;
+		Servicio s = dao.traer(id);
+		if ((s.getProfesionales().contains(profesional))) {
+			throw new Exception("El profesional ya existe en el servicio");
+		}
+		return dao.agregarProfesional(s, profesional);
 	}
 
 }
