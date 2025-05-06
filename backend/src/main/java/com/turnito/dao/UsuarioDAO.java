@@ -32,11 +32,12 @@ public class UsuarioDAO {
     }
 
     // Traer Usuario por ID
-    public Usuario traer(int idUsuario) {
+    public Usuario traer(int id) {
         Usuario objeto = null;
         try {
-            iniciaOperacion();
-            objeto = session.get(Usuario.class, idUsuario);
+        	iniciaOperacion();
+        	objeto = (Usuario) session.createQuery("from Usuario u where u.id=:id")
+        	.setParameter("id", id).uniqueResult();
         } finally {
             session.close();
         }
@@ -60,7 +61,7 @@ public class UsuarioDAO {
         int id = 0;
         try {
             iniciaOperacion();
-            id = (int) session.save(nuevo);
+            id = Integer.parseInt(session.save(nuevo).toString());
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);

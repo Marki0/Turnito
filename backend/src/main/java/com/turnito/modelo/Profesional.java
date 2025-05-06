@@ -1,9 +1,5 @@
 package com.turnito.modelo;
 
-import javax.persistence.*;
-
-@Entity
-@DiscriminatorValue("PROFESIONAL")
 public class Profesional extends Usuario {
 	private String matricula;
 	private String especialidad;
@@ -32,5 +28,10 @@ public class Profesional extends Usuario {
 		this.especialidad = especialidad;
 	}
 
+	@Override
+	public String toString() {
+		return "Profesional [matricula=" + matricula + ", especialidad=" + especialidad + "]";
+	}
+	
 	// Getters y setters
 }
