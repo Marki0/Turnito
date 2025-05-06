@@ -1,34 +1,63 @@
 package com.turnito.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.turnito.modelo.Solicitante;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
-import com.turnito.modelo.Solicitante;
+import java.util.List;
 
 public class SolicitanteDAO {
     private static Session session;
     private Transaction tx;
+    private static SolicitanteDAO instancia = null; // Singleton
 
-    private void iniciaOperacion() throws HibernateException {
+    public SolicitanteDAO() {
+    }
+
+    public static SolicitanteDAO getInstance() {
+        if (instancia == null)
+            instancia = new SolicitanteDAO();
+        return instancia;
+    }
+
+    protected void iniciaOperacion() throws HibernateException {
         session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
     }
 
-    private void manejaExcepcion(HibernateException he) throws HibernateException {
-        tx.rollback();
+    protected void manejaExcepcion(HibernateException he) throws HibernateException {
+        if (tx != null) tx.rollback();
         throw new HibernateException("ERROR en la capa de acceso a datos", he);
     }
 
-    public int agregar(Solicitante objeto) {
+    public Solicitante traer(int id) {
+        Solicitante objeto = null;
+        try {
+            iniciaOperacion();
+            objeto = session.get(Solicitante.class, id);
+        } finally {
+            session.close();
+        }
+        return objeto;
+    }
+
+    public List<Solicitante> traer() {
+        List<Solicitante> lista = null;
+        try {
+            iniciaOperacion();
+            lista = session.createQuery("from Solicitante", Solicitante.class).list();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+
+    public int agregar(Solicitante nuevo) {
         int id = 0;
         try {
             iniciaOperacion();
-            id = Integer.parseInt(session.save(objeto).toString());
+            id = (int) session.save(nuevo);
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
@@ -45,6 +74,7 @@ public class SolicitanteDAO {
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
+            throw he;
         } finally {
             session.close();
         }
@@ -57,32 +87,9 @@ public class SolicitanteDAO {
             tx.commit();
         } catch (HibernateException he) {
             manejaExcepcion(he);
+            throw he;
         } finally {
             session.close();
         }
-    }
-
-    public Solicitante traer(int id) {
-        Solicitante objeto = null;
-        try {
-            iniciaOperacion();
-            objeto = (Solicitante) session.get(Solicitante.class, id);
-        } finally {
-            session.close();
-        }
-        return objeto;
-    }
-
-    public List<Solicitante> traer() {
-        List<Solicitante> lista = new ArrayList<Solicitante>();
-        try {
-            iniciaOperacion();
-            Query<Solicitante> query = session.createQuery("from Solicitante s order by s.nombre asc",
-                    Solicitante.class);
-            lista = query.getResultList();
-        } finally {
-            session.close();
-        }
-        return lista;
     }
 }

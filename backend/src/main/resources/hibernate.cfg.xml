@@ -24,8 +24,8 @@
 
         <!-- Clases anotadas -->
         <!-- Agregaremos las entidades acá más adelante -->
-        <mapping resource = "mapeo/Servicio.hbm.xml"/>
-        <mapping resource = "mapeo/Turno.hbm.xml"/>
+        <!-- <mapping resource = "mapeo/Servicio.hbm.xml"/>
+         <mapping resource = "mapeo/Turno.hbm.xml"/>-->
         <mapping resource = "mapeo/Usuario.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

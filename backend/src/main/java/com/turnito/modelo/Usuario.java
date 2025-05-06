@@ -1,21 +1,28 @@
 package com.turnito.modelo;
 
-public class Usuario {
-    private int id;
-    private String nombre;
-    private String email;
-    private String telefono;
-    private long Dni;
+import javax.persistence.*;
 
-	public Usuario() {
-		// Constructor vacío necesario para Hibernate
-	}
-	public Usuario(int id, String nombre, String email, String telefono, long dni) {
-		this.id = id;
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
+public abstract class Usuario {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String nombre;
+	private String email;
+	private String telefono;
+	private long dni;
+
+	// Getters y setters
+
+	public Usuario() {}
+
+	public Usuario(String nombre, String email, String telefono, long dni) {
 		this.nombre = nombre;
 		this.email = email;
 		this.telefono = telefono;
-		Dni = dni;
+		this.dni = dni;
 	}
 
 	public int getId() {
@@ -42,14 +49,6 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public long getDni() {
-		return Dni;
-	}
-
-	public void setDni(long dni) {
-		Dni = dni;
-	}
-
 	public String getTelefono() {
 		return telefono;
 	}
@@ -57,4 +56,14 @@ public class Usuario {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+
+	public long getDni() {
+		return dni;
+	}
+
+	public void setDni(long dni) {
+		this.dni = dni;
+	}
+
+	// Métodos comunes
 }
