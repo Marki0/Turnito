@@ -1,9 +1,5 @@
 package com.turnito.modelo;
 
-import javax.persistence.*;
-
-@Entity
-@DiscriminatorValue("ADMINISTRADOR")
 public class Administrador extends Usuario {
     private String sector;
 

@@ -9,7 +9,6 @@ CREATE TABLE Usuario (
     email VARCHAR(100) UNIQUE NOT NULL,
     telefono VARCHAR(20),
     DNI VARCHAR(20) UNIQUE,
-    tipo_usuario VARCHAR(50) NOT NULL -- Columna para diferenciar el tipo de usuario (Administrador, Solicitante, Profesional)
 );
 
 -- Tabla Administrador

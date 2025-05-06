@@ -1,9 +1,5 @@
 package com.turnito.modelo;
 
-import javax.persistence.*;
-
-@Entity
-@DiscriminatorValue("SOLICITANTE")
 public class Solicitante extends Usuario {
     private String motivo;
 
