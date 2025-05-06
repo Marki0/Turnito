@@ -5,6 +5,7 @@ import com.turnito.modelo.Usuario;
 import com.turnito.modelo.Administrador;
 import com.turnito.modelo.Solicitante;
 import com.turnito.modelo.Profesional;
+import com.turnito.modelo.Servicio;
 
 import java.util.List;
 
@@ -30,6 +31,20 @@ public class UsuarioABM {
 			throw new Exception("Ya existe un usuario");
 		}
 		return dao.agregar(usuario);
+	}
+	
+	public void modificar(Usuario usuario) throws Exception {
+		Usuario existente = dao.traerPorDni(usuario.getDni());
+
+		if (existente == null) {
+			throw new Exception("Usuario invalido");
+		}
+		
+		existente.setEmail(usuario.getEmail());
+		existente.setNombre(usuario.getNombre());
+		existente.setTelefono(usuario.getTelefono());
+
+		dao.actualizar(existente);
 	}
 
 	public void eliminar(int id) throws Exception {
