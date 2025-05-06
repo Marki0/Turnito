@@ -1,13 +1,6 @@
 package com.turnito.modelo;
 
-import javax.persistence.*;
-
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
 public abstract class Usuario {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nombre;
 	private String email;
@@ -29,7 +22,7 @@ public abstract class Usuario {
 		return id;
 	}
 
-	public void setId(int id) {
+	protected void setId(int id) {
 		this.id = id;
 	}
 
@@ -65,5 +58,12 @@ public abstract class Usuario {
 		this.dni = dni;
 	}
 
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombre=" + nombre + ", email=" + email + ", telefono=" + telefono + ", dni="
+				+ dni + "]";
+	}
+
 	// Métodos comunes
+	
 }
