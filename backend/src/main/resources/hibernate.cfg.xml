@@ -9,9 +9,9 @@
 
         <!-- Conexión a la BD -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/turnito_db?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/turnito_db?allowPublicKeyRetrieval=true&amp;useSSL=false&amp;serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.password">nathansharp239</property>
 
         <!-- Dialecto -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
