@@ -8,10 +8,11 @@
         </id>
 
         <!-- Mapeo fecha y hora -->
-        <property name="fecha" column="fecha" type="date"/>
-        <property name="hora" column="hora" type="time"/>
+        <property name="fecha" column="fecha" type="java.time.LocalDate"/>
+        <property name="hora" column="hora" type="java.time.LocalTime"/>
+
         <property name="estado" column="estado" type="boolean"/>
-        <property name="direccion" column="direccion" type="string"/>
+
 
         <!-- Relaciones con claves foráneas -->
         <many-to-one name="profesional" class="com.turnito.modelo.Profesional" column="profesional_id" not-null="true"/>
