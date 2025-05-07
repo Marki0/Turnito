@@ -14,11 +14,8 @@ public class TestServicio {
 		ServicioABM abmServicio = new ServicioABM();
 		UsuarioABM abmUsuario = new UsuarioABM();
 		ProfesionalABM abmProfesional = new ProfesionalABM();
-		/*try {
-			abmServicio.eliminar(2);
-			abmServicio.agregar("Cardiologia", 30, true, LocalTime.of(10, 30));
-			abmServicio.agregar("Pediatria", 45, true, LocalTime.of(12, 00));
-			abmServicio.agregar("Pediatria", 45, true, LocalTime.of(13, 15));
+		try {
+			System.out.println("Se agrego el usuario con ID: " + abmServicio.agregar("Cardiologia", 30, true, LocalTime.of(10, 30)));
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -39,8 +36,8 @@ public class TestServicio {
 			System.out.println(abmServicio.traer());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}*/
-		
+		}
+	
         try {
 			Servicio s = abmServicio.traer("Cardiologia");
 			System.out.println(s);
