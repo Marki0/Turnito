@@ -8,7 +8,7 @@ CREATE TABLE Usuario (
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     telefono VARCHAR(20),
-    DNI VARCHAR(20) UNIQUE,
+    DNI VARCHAR(20) UNIQUE
 );
 
 -- Tabla Administrador
@@ -58,7 +58,6 @@ CREATE TABLE Turno (
     fecha DATE NOT NULL,
     hora TIME NOT NULL,
     estado VARCHAR(50),
-    direccion VARCHAR(255),
     profesional_id INT NOT NULL,
     servicio_id INT NOT NULL,
     solicitante_id INT NOT NULL,

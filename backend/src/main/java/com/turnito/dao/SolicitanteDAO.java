@@ -92,4 +92,5 @@ public class SolicitanteDAO {
             session.close();
         }
     }
+
 }

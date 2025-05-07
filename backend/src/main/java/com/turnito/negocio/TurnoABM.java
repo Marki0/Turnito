@@ -1,14 +1,14 @@
 package com.turnito.negocio;
 
-import com.turnito.dao.TurnoDAO;
-import com.turnito.modelo.Turno;
-import com.turnito.modelo.Profesional;
-import com.turnito.modelo.Solicitante;
-import com.turnito.modelo.Servicio;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+
+import com.turnito.dao.TurnoDAO;
+import com.turnito.modelo.Profesional;
+import com.turnito.modelo.Servicio;
+import com.turnito.modelo.Solicitante;
+import com.turnito.modelo.Turno;
 
 public class TurnoABM {
     TurnoDAO dao = new TurnoDAO();
@@ -21,16 +21,21 @@ public class TurnoABM {
         return dao.traer();
     }
 
-    public int agregar(LocalDate fecha, LocalTime hora, boolean estado, String direccion,
-                       Profesional profesional, Servicio servicio, Solicitante solicitante) throws Exception {
+    public List<Turno> traerPorSolicitante(Solicitante solicitante) {
+        return dao.traerPorSolicitante(solicitante);
+    }
 
-        // Validación: no permitir turno duplicado en misma fecha/hora para mismo profesional
-        Turno existente = dao.traerPorFechaHoraYProfesional(fecha, hora, profesional);
-        if (existente != null) {
-            throw new Exception("Ya existe un turno para este profesional en esa fecha y hora");
+    public int agregar(LocalDate fecha, LocalTime hora, boolean estado, Servicio servicio, Profesional profesional, Solicitante solicitante) throws Exception {
+        // Ejemplo de regla: no permitir turno duplicado para el mismo solicitante, fecha y hora
+        List<Turno> existentes = dao.traerPorSolicitante(solicitante);
+        for (Turno t : existentes) {
+            if (t.getFecha().equals(fecha) && t.getHora().equals(hora)) {
+                throw new Exception("Ya existe un turno para ese solicitante en la fecha y hora indicada");
+            }
         }
 
-        return dao.agregar(new Turno(fecha, hora, estado, direccion, profesional, servicio, solicitante));
+        Turno nuevo = new Turno(fecha, hora, estado, servicio, profesional, solicitante);
+        return dao.agregar(nuevo);
     }
 
     public void modificar(Turno turno) throws Exception {
@@ -40,17 +45,11 @@ public class TurnoABM {
             throw new Exception("Turno no encontrado");
         }
 
-        Turno duplicado = dao.traerPorFechaHoraYProfesional(turno.getFecha(), turno.getHora(), turno.getProfesional());
-        if (duplicado != null && duplicado.getId() != turno.getId()) {
-            throw new Exception("Ya existe otro turno con ese profesional en esa fecha y hora");
-        }
-
         existente.setFecha(turno.getFecha());
         existente.setHora(turno.getHora());
         existente.setEstado(turno.isEstado());
-        existente.setDireccion(turno.getDireccion());
-        existente.setProfesional(turno.getProfesional());
         existente.setServicio(turno.getServicio());
+        existente.setProfesional(turno.getProfesional());
         existente.setSolicitante(turno.getSolicitante());
 
         dao.actualizar(existente);
@@ -61,7 +60,6 @@ public class TurnoABM {
         if (turno == null) {
             throw new Exception("Turno no encontrado");
         }
-
         dao.eliminar(turno);
     }
 }
