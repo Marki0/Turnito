@@ -18,5 +18,12 @@ public class Solicitante extends Usuario {
         this.motivo = motivo;
     }
 
+    @Override
+    public String toString() {
+        return "Solicitante{" +
+                "motivo='" + motivo + '\'' +
+                '}';
+    }
+
     // Getters y setters
 }
