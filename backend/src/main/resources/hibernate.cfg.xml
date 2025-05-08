@@ -17,7 +17,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
         <!-- Mostrar SQL en consola -->
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
 
         <!-- Actualizar tablas automáticamente -->
         <property name="hibernate.hbm2ddl.auto">update</property>
@@ -25,6 +25,12 @@
         <!-- Clases anotadas -->
         <!-- Agregaremos las entidades acá más adelante -->
         <mapping resource = "mapeo/Servicio.hbm.xml"/>
+<<<<<<< HEAD
         <mapping resource = "mapeo/Usuario.hbm.xml"/>
+=======
+         <mapping resource = "mapeo/Turno.hbm.xml"/>
+        <mapping resource = "mapeo/Usuario.hbm.xml"/>
+        <mapping resource = "mapeo/Servicio.hbm.xml"/>
+>>>>>>> f531b9040f1ed23ee11bca5ca6644bbbf515b0ef
     </session-factory>
 </hibernate-configuration>

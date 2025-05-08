@@ -1,8 +1,13 @@
 package com.turnito.modelo;
 
 import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
+
+import com.turnito.negocio.ServicioABM;
+import com.turnito.negocio.UsuarioABM;
 
 public class Servicio {
 	private int id;
@@ -75,33 +80,35 @@ public class Servicio {
 	@Override
 	public String toString() {
 		return "Servicio [id=" + id + ", nombre=" + nombre + ", duracion=" + duracion + ", estado=" + estado
-				+ ", horario=" + horario + "]";
-	}
-	
-	public boolean agregar(Profesional profesional) {
-		boolean agregar = false;
-		if (!(profesionales.contains(profesional))) {
-			agregar = profesionales.add(profesional);
-		}
-		return agregar;
+				+ ", horario=" + horario + ", profesionales=\n" + profesionales + "]";
 	}
 
-	public boolean eliminar(Profesional profesional) {
-		Profesional borrar = null;
-		boolean eliminar = false;
-		Iterator<Profesional> it = profesionales.iterator();
-		while ((it.hasNext()) && (borrar == null)) {
-			Profesional p = it.next();
-			if (p.equals(profesional))
-				borrar = p;
+	public boolean agregar(Profesional profesional) throws Exception {
+		ServicioABM abmServicio = new ServicioABM();
+		if (profesional == null) {
+			throw new Exception("El profesional no existe");
 		}
-		eliminar = profesionales.remove(borrar);
-		return eliminar;
-	}
-	
-	public boolean modificar(Profesional profesional) {
-		//TODO
-		return true;
+		return abmServicio.agregarProfesional(id, profesional);
 	}
 
+	public boolean eliminar(Profesional profesional) throws Exception {
+		ServicioABM abmServicio = new ServicioABM();
+		if (profesional == null) {
+			throw new Exception("El profesional no existe");
+		}
+		return abmServicio.eliminarProfesional(id,profesional);
+	}
+
+
+	public Servicio traerServicioYProfesionales(Servicio s) throws Exception{
+		ServicioABM abmServicio = new ServicioABM();
+		if (abmServicio.traer(s.getId()) == null || s == null) {
+			throw new Exception("Servicio invalido");
+		}
+		return abmServicio.traerServicioYProfesionales(s.getId());
+	}
+
+
+	
+	
 }

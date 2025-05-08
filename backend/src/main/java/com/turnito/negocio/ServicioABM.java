@@ -1,6 +1,7 @@
 package com.turnito.negocio;
 
 import com.turnito.dao.ServicioDAO;
+import com.turnito.modelo.Profesional;
 import com.turnito.modelo.Servicio;
 
 import java.time.LocalTime;
@@ -17,7 +18,7 @@ public class ServicioABM {
 		return dao.traer(nombre);
 	}
 
-	public Servicio traer(String nombre, LocalTime horario) {
+	public Servicio traer(String nombre, LocalTime horario){
 		return dao.traer(nombre, horario);
 	}
 
@@ -52,13 +53,32 @@ public class ServicioABM {
 		dao.actualizar(existente);
 	}
 
-	public void eliminar(int id) throws Exception {
-		Servicio servicio = dao.traer(id);
-		if (servicio == null) {
+	public void eliminar(Servicio s) throws Exception {
+		if (s == null) {
 			throw new Exception("Servicio no encontrado");
 		}
 
-		dao.eliminar(servicio);
+		dao.eliminar(s);
+	}
+	
+	public boolean agregarProfesional(int id,Profesional profesional)throws Exception {
+		Servicio s = dao.traer(id);
+		if ((s.getProfesionales().contains(profesional))) {
+			throw new Exception("El profesional ya existe en el servicio");
+		}
+		return dao.agregarProfesional(s, profesional);
+	}
+	
+	public boolean eliminarProfesional(int id, Profesional profesional) throws Exception {
+		Servicio s = dao.traer(id);
+		if(!s.getProfesionales().contains(profesional)) {
+			throw new Exception("El profesional a eliminar no existe en el servicio");
+		}
+		
+		return dao.eliminarProfesional(s, profesional);
 	}
 
+	public Servicio traerServicioYProfesionales(int id) {
+		return dao.traerServicioYProfesionales(id);
+	}
 }

@@ -1,36 +1,52 @@
 package com.turnito.modelo;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Entity
+@Table(name = "turnos") // el nombre de tu tabla en MySQL
 public class Turno {
-    private int Id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private LocalDate fecha;
     private LocalTime hora;
     private boolean estado;
-    private String direccion;
-    private int profesional_id;
-    private int servicio_id;
-    private int solicitante_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idServicio")
+    private Servicio servicio;
 
 
-    public Turno(int id, LocalDate fecha, LocalTime hora, boolean estado, String direccion,int profesional_id,int servicio_id,int solicitante_id) {
-        Id = id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "profesional_id") // columna FK en tu tabla turnos
+    private Profesional profesional;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "solicitante_id") // columna FK en tu tabla turnos
+    private Solicitante solicitante;
+
+    public Turno() {}
+
+    public Turno(LocalDate fecha, LocalTime hora, boolean estado, Servicio servicio, Profesional profesional, Solicitante solicitante) {
         this.fecha = fecha;
         this.hora = hora;
         this.estado = estado;
-        this.direccion = direccion;
-        this.profesional_id = profesional_id;
-        this.servicio_id = servicio_id;
-        this.solicitante_id = solicitante_id;
+        this.servicio = servicio;
+        this.profesional = profesional;
+        this.solicitante = solicitante;
     }
 
+
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public LocalDate getFecha() {
@@ -57,39 +73,40 @@ public class Turno {
         this.estado = estado;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public Servicio getServicio() {
+        return servicio;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
     }
 
-    public int getProfesional_id() {
-        return profesional_id;
+    public Profesional getProfesional() {
+        return profesional;
     }
 
-    public void setProfesional_id(int profesional_id) {
-        this.profesional_id = profesional_id;
+    public void setProfesional(Profesional profesional) {
+        this.profesional = profesional;
     }
 
-    public int getServicio_id() {
-        return servicio_id;
+    public Solicitante getSolicitante() {
+        return solicitante;
     }
 
-    public void setServicio_id(int servicio_id) {
-        this.servicio_id = servicio_id;
+    public void setSolicitante(Solicitante solicitante) {
+        this.solicitante = solicitante;
     }
 
-    public int getSolicitante_id() {
-        return solicitante_id;
+    @Override
+    public String toString() {
+        return "Turno{" +
+                "id=" + id +
+                ", fecha=" + fecha +
+                ", hora=" + hora +
+                ", estado=" + estado +
+                ", servicio=" + servicio +
+                ", profesional=" + profesional +
+                ", solicitante=" + solicitante +
+                '}';
     }
-
-    public void setSolicitante_id(int solicitante_id) {
-        this.solicitante_id = solicitante_id;
-    }
-
-
 }
-
-

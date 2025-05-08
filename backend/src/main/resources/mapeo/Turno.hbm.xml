@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.turnito.modelo.Turno" table="Turno">
+        <id name="id" column="id">
+            <generator class="identity"/>
+        </id>
+
+        <!-- Mapeo fecha y hora -->
+        <property name="fecha" column="fecha" type="java.time.LocalDate"/>
+        <property name="hora" column="hora" type="java.time.LocalTime"/>
+
+        <property name="estado" column="estado" type="boolean"/>
+
+
+        <!-- Relaciones con claves foráneas -->
+        <many-to-one name="profesional" class="com.turnito.modelo.Profesional" column="profesional_id" not-null="true"/>
+        <many-to-one name="solicitante" class="com.turnito.modelo.Solicitante" column="solicitante_id" not-null="true"/>
+        <many-to-one name="servicio" class="com.turnito.modelo.Servicio" column="servicio_id" not-null="true"/>
+    </class>
+</hibernate-mapping>
