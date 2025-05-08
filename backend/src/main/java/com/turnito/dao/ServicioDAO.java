@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -44,8 +45,8 @@ public class ServicioDAO {
 	public boolean agregarProfesional(Servicio servicio, Profesional profesional) {
 	    try {
 	        iniciaOperacion();
-	        servicio.getProfesionales().add(profesional);  // agregás el profesional a la colección
-	        session.update(servicio);                       // persistís la relación en la base
+	        servicio.getProfesionales().add(profesional);
+	        session.update(servicio);                       
 	        tx.commit();
 	        return true;
 	    } catch (HibernateException he) {
@@ -76,6 +77,21 @@ public class ServicioDAO {
 			tx.commit();
 		} catch (HibernateException he) {
 			manejaExcepcion(he);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public boolean eliminarProfesional(Servicio servicio, Profesional profesional) {
+		try {
+			iniciaOperacion();
+			servicio.getProfesionales().remove(profesional);
+			session.update(servicio);
+			tx.commit();
+			return true;
+		} catch (HibernateException he) {
+			manejaExcepcion(he);
+			throw he;
 		} finally {
 			session.close();
 		}
@@ -133,4 +149,18 @@ public class ServicioDAO {
 		}
 		return lista;
 	}
+	
+	public Servicio traerServicioYProfesionales(int id) {
+		Servicio objeto = null;
+		try {
+		iniciaOperacion();
+		String hql = "from Servicio s where s.id =:id";
+		objeto = (Servicio) session.createQuery(hql).setParameter("id", id)
+		.uniqueResult();
+		Hibernate.initialize(objeto.getProfesionales());
+		} finally {
+		session.close();
+		}
+		return objeto;
+		}
 }

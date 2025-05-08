@@ -16,7 +16,7 @@ public class UsuarioABM {
 		return dao.traer(id);
 	}
 
-	public Usuario traerPorDni(long dni) {
+	public Usuario traerPorDni(long dni) throws Exception{
 		return dao.traerPorDni(dni);
 	}
 
@@ -47,11 +47,10 @@ public class UsuarioABM {
 		dao.actualizar(existente);
 	}
 
-	public void eliminar(int id) throws Exception {
-		Usuario usuario = dao.traer(id);
+	public void eliminar(Usuario usuario) throws Exception {
 		if (usuario == null) {
-			throw new Exception("Usuario no encontrado");
-		}
+			throw new Exception("Usuario invalido");
+		};
 		dao.eliminar(usuario);
 	}
 }
