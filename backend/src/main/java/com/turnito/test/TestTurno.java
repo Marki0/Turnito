@@ -21,17 +21,17 @@ public class TestTurno {
         ProfesionalABM abmProfesional = new ProfesionalABM();
 
         try {
-            // Crear un profesional (Usuario)
+            // Agregar Profesional
             Profesional profesional = new Profesional("Carlos", "2345", "1234567890", 123456L, "F123", "Cardiologo");
             abmUsuario.agregar(profesional);
             System.out.println("Profesional agregado: " + profesional);
 
-            // Crear un solicitante (Usuario)
-            Solicitante solicitante = new Solicitante("María", "5432", "maria@example.com", 654321L,"Consulta medica");
+            // Agregar Solicitante
+            Solicitante solicitante = new Solicitante("María", "5432", "maria@example.com", 654321L, "Consulta médica");
             abmUsuario.agregar(solicitante);
             System.out.println("Solicitante agregado: " + solicitante);
 
-            // Crear un servicio
+            // Agregar Servicio
             String nombreServicio = "Cardiología";
             int duracion = 30;
             boolean estado = true;
@@ -39,25 +39,43 @@ public class TestTurno {
             abmServicio.agregar(nombreServicio, duracion, estado, hora);
             System.out.println("Servicio agregado: " + nombreServicio);
 
-            // Crear un turno y asociar profesional, servicio y solicitante
+            // Traer Servicio para asociar
+            Servicio servicio = abmServicio.traer(nombreServicio);
+
+            // Agregar Turno
             int turnoId = abmTurno.agregar(
                     LocalDate.now(),
                     LocalTime.of(10, 30),
                     true,
-                    abmServicio.traer(nombreServicio),
+                    servicio,
                     profesional,
                     solicitante
-
             );
+            System.out.println("\nTurno agregado con ID: " + turnoId);
 
-            // Mostrar el turno creado
+            // Mostrar Turno creado
             Turno turno = abmTurno.traer(turnoId);
-            System.out.println("\n=== Turno creado con Profesional, Servicio y Solicitante ===");
 
+
+            // Modificar Turno (cambio de horario)
+            System.out.println("\nModificando turno...");
+            turno.setHora(LocalTime.of(11, 0));
+            abmTurno.modificar(turno);
+            System.out.println("Turno modificado: " + abmTurno.traer(turnoId));
+
+            // Intentar eliminar Turno
+            System.out.println("\nEliminando turno...");
+            abmTurno.eliminar(turno.getId());
+            System.out.println("Turno eliminado con éxito");
+
+            // Intentar traer el turno eliminado (debería fallar o devolver null)
+            System.out.println("\nBuscando turno eliminado...");
+            Turno turnoEliminado = abmTurno.traer(turnoId);
+            System.out.println("Resultado: " + turnoEliminado);
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            e.printStackTrace();  // 👈 (opcional) para ver la traza si falla
+            e.printStackTrace();  // Opcional: para depuración
         }
     }
 }

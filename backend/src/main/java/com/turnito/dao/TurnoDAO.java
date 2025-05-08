@@ -1,6 +1,7 @@
 package com.turnito.dao;
 
 import com.turnito.modelo.Turno;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -28,11 +29,15 @@ public class TurnoDAO {
         try {
             iniciaOperacion();
             turno = session.get(Turno.class, id);
+            Hibernate.initialize(turno.getServicio());
+            Hibernate.initialize(turno.getProfesional());
+            Hibernate.initialize(turno.getSolicitante());
         } finally {
             session.close();
         }
         return turno;
     }
+
 
     public List<Turno> traer() {
         List<Turno> lista = null;
