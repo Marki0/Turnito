@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "turnos") // el nombre de tu tabla en MySQL
+@Table(name = "turnos")
 public class Turno {
 
     @Id
@@ -104,9 +104,9 @@ public class Turno {
                 ", fecha=" + fecha +
                 ", hora=" + hora +
                 ", estado=" + estado +
-                ", servicio=" + servicio +  // <- ESTE LLAMA A toString() de Servicio, que intenta acceder a datos LAZY
-                ", profesional=" + profesional +  // <- Lo mismo acá
-                ", solicitante=" + solicitante +  // <- Y acá
+                ", servicio=" + servicio +
+                ", profesional=" + profesional +
+                ", solicitante=" + solicitante +
                 '}';
     }
 

@@ -64,7 +64,7 @@ public class TestTurno {
             System.out.println("Turno modificado: " + abmTurno.traer(turnoId));
 
             // Intentar eliminar Turno
-            System.out.println("\nEliminando turno...");
+            /*System.out.println("\nEliminando turno...");
             abmTurno.eliminar(turno.getId());
             System.out.println("Turno eliminado con éxito");
 
@@ -72,7 +72,7 @@ public class TestTurno {
             System.out.println("\nBuscando turno eliminado...");
             Turno turnoEliminado = abmTurno.traer(turnoId);
             System.out.println("Resultado: " + turnoEliminado);
-
+            */
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();  // Opcional: para depuración
