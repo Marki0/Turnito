@@ -1,6 +1,11 @@
 package com.turnito.modelo;
-
+import javax.persistence.*;
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "Usuario")
 public class Usuario {
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
     private String nombre;
     private String email;

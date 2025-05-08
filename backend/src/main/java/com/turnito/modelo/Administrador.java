@@ -1,5 +1,9 @@
 package com.turnito.modelo;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Administrador")
+@PrimaryKeyJoinColumn(name = "ID")
 public class Administrador extends Usuario {
     private String sector;
 
