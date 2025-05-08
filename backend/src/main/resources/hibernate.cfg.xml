@@ -17,7 +17,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
         <!-- Mostrar SQL en consola -->
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
 
         <!-- Actualizar tablas automáticamente -->
         <property name="hibernate.hbm2ddl.auto">update</property>

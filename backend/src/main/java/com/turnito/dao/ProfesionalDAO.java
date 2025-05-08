@@ -91,4 +91,19 @@ public class ProfesionalDAO {
             session.close();
         }
     }
+    
+	public boolean agregarServicio(Profesional profesional, Servicio servicio) {
+	    try {
+	        iniciaOperacion();
+	        profesional.getServicios().add(servicio);
+	        session.update(profesional);                       
+	        tx.commit();
+	        return true;
+	    } catch (HibernateException he) {
+	        manejaExcepcion(he);
+	        throw he;
+	    } finally {
+	        session.close();
+	    }
+	}
 }
