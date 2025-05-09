@@ -16,7 +16,7 @@ public class AdministradorABM extends UsuarioABM {
 
     public int agregar(String nombre, String email, String telefono, long dni, String sector) throws Exception {
         if (traerPorDni(dni) != null) {
-            throw new Exception("Ya existe un usuario con ese DNI");
+            throw new Exception("Ya existe un usuario con ese DNI:  ");
         }
 
         Administrador nuevo = new Administrador();
@@ -32,7 +32,7 @@ public class AdministradorABM extends UsuarioABM {
     public void eliminar(int id) throws Exception {
         Administrador administrador = daoAdministrador.traer(id);
         if (administrador == null) {
-            throw new Exception("Administrador no encontrado");
+            throw new Exception("Administrador no encontrado: ");
         }
         daoAdministrador.eliminar(administrador);
     }
