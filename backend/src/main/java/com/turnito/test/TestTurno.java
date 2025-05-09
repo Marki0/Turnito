@@ -58,7 +58,7 @@ public class TestTurno {
 
 
             // Modificar Turno (cambio de horario)
-            System.out.println("\nModificando turno...");
+            System.out.println("\nModificando turno..");
             turno.setHora(LocalTime.of(11, 0));
             abmTurno.modificar(turno);
             System.out.println("Turno modificado: " + abmTurno.traer(turnoId));
