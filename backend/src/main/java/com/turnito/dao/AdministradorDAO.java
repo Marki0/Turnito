@@ -28,7 +28,7 @@ public class AdministradorDAO {
 
     protected void manejaExcepcion(HibernateException he) throws HibernateException {
         if (tx != null) tx.rollback();
-        throw new HibernateException("ERROR en la capa de acceso a datos", he);
+        throw new HibernateException("ERROR en la capa de acceso a datos ", he);
     }
 
     public Administrador traer(int id) {

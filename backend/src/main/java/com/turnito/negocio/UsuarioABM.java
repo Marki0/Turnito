@@ -28,7 +28,7 @@ public class UsuarioABM {
 	// usuario
 	public int agregar(Usuario usuario) throws Exception {
 		if (traerPorDni(usuario.getDni()) != null) {
-			throw new Exception("Ya existe un usuario");
+			throw new Exception("Ya existe un usuario ");
 		}
 		return dao.agregar(usuario);
 	}

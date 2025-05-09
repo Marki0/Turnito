@@ -18,6 +18,7 @@ public class UsuarioDAO {
     public static UsuarioDAO getInstance() {
         if (instancia == null)
             instancia = new UsuarioDAO();
+
         return instancia;
     }
 

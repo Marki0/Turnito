@@ -30,7 +30,7 @@ public class TurnoABM {
         List<Turno> existentes = dao.traerPorSolicitante(solicitante);
         for (Turno t : existentes) {
             if (t.getFecha().equals(fecha) && t.getHora().equals(hora)) {
-                throw new Exception("Ya existe un turno para ese solicitante en la fecha y hora indicada");
+                throw new Exception("Ya existe un turno para ese solicitante en la fecha y hora indicada ");
             }
         }
 

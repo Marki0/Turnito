@@ -28,7 +28,7 @@ public class ServicioABM {
 
 	public int agregar(String nombre, int duracion, boolean estado, LocalTime horario) throws Exception {
 		if (traer(nombre, horario) != null) {
-			throw new Exception("El servicio ya existe en ese horario");
+			throw new Exception("El servicio ya existe en ese horario ");
 		}
 
 		return dao.agregar(new Servicio(nombre, duracion, estado, horario));

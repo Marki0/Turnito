@@ -101,7 +101,7 @@ public class Turno {
     public String toString() {
         return "Turno{" +
                 "id=" + id +
-                ", fecha=" + fecha +
+                ", fecha= " + fecha +
                 ", hora=" + hora +
                 ", estado=" + estado +
                 ", servicio=" + servicio +

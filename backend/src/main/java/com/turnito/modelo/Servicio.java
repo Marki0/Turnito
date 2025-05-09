@@ -79,7 +79,7 @@ public class Servicio {
 
 	@Override
 	public String toString() {
-		return "Servicio [id=" + id + ", nombre=" + nombre + ", duracion=" + duracion + ", estado=" + estado
+		return "Servicio [id=" + id + ", nombre= " + nombre + ", duracion=" + duracion + ", estado=" + estado
 				+ ", horario=" + horario + ", profesionales=\n" + profesionales + "]";
 	}
 

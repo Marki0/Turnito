@@ -16,7 +16,7 @@ public class SolicitanteABM extends UsuarioABM {
 
     public int agregar(String nombre, String email, String telefono, long dni, String motivo) throws Exception {
         if (traerPorDni(dni) != null) {
-            throw new Exception("Ya existe un usuario con ese DNI");
+            throw new Exception("Ya existe un usuario con ese DNI ");
         }
 
         Solicitante nuevo = new Solicitante();

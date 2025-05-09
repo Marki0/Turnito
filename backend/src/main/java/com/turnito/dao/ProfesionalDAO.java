@@ -27,7 +27,7 @@ public class ProfesionalDAO {
 
     protected void manejaExcepcion(HibernateException he) throws HibernateException {
         if (tx != null) tx.rollback();
-        throw new HibernateException("ERROR en DAO Profesional", he);
+        throw new HibernateException("ERROR en DAO Profesional ", he);
     }
 
 	public Profesional traer(int id) {

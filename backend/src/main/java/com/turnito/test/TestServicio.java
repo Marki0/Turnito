@@ -18,7 +18,7 @@ public class TestServicio {
 			System.out.println("Se agregó la actividad con ID: "
 					+ abmServicio.agregar("Vacunación", 10, true, LocalTime.of(15, 0)));
 			System.out.println("Se agregó la actividad con ID: "
-					+ abmServicio.agregar("Atención al Cliente", 10, true, LocalTime.of(9, 0)));
+					+ abmServicio.agregar("Atención al Cliente ", 10, true, LocalTime.of(9, 0)));
 			System.out.println("Se agregó la actividad con ID: "
 					+ abmServicio.agregar("Renovación de DNI", 20, false, LocalTime.of(10, 30)));
 			System.out.println("Se agregó la actividad con ID: "

@@ -24,7 +24,7 @@ public class TestUsuario {
 			System.out.println("Se agregó el administrador con ID: " + abm.agregar(new Administrador("Laura Gómez", "laura.gomez@mail.com", "1189012345", 40123456L,"Administracion")));
 
 			// Profesional duplicado (DNI ya existente)
-			abm.agregar(new Profesional("Gabriela", "Salinas", "gabi.dup@mail.com", 14567890L, "MAT-004", "Dermatologia"));
+			abm.agregar(new Profesional("Gabriela", "Salinas", "gabi.dup@mail.com ", 14567890L, "MAT-004", "Dermatologia"));
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

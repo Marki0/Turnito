@@ -27,7 +27,7 @@ public class TestTurno {
             System.out.println("Profesional agregado: " + profesional);
 
             // Agregar Solicitante
-            Solicitante solicitante = new Solicitante("María", "5432", "maria@example.com", 654321L, "Consulta médica");
+            Solicitante solicitante = new Solicitante("María", "5432", "maria@example.com", 654321L, "Consulta médica ");
             abmUsuario.agregar(solicitante);
             System.out.println("Solicitante agregado: " + solicitante);
 

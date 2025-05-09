@@ -33,7 +33,7 @@ public class Profesional extends Usuario {
 
 	@Override
 	public String toString() {
-		return "Profesional [matricula=" + matricula + ", especialidad=" + especialidad + "]";
+		return "Profesional [matricula= " + matricula + ", especialidad=" + especialidad + "]";
 	}
 
 	public Set<Servicio> getServicios() {

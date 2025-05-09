@@ -15,7 +15,7 @@ public class ProfesionalABM extends UsuarioABM {
 
     public int agregar(String nombre, String email, String telefono, long dni, String matricula, String especialidad) throws Exception {
         if (traerPorDni(dni) != null) {
-            throw new Exception("Ya existe un usuario con ese DNI");
+            throw new Exception("Ya existe un usuario con ese DNI ");
         }
 
         Profesional nuevo = new Profesional();
@@ -32,7 +32,7 @@ public class ProfesionalABM extends UsuarioABM {
     public void eliminar(int id) throws Exception {
         Profesional profesional = daoProfesional.traer(id);
         if (profesional == null) {
-            throw new Exception("Profesional no encontrado");
+            throw new Exception("Profesional no encontrado ");
         }
         daoProfesional.eliminar(profesional);
     }

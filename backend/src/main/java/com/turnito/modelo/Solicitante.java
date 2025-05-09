@@ -21,7 +21,7 @@ public class Solicitante extends Usuario {
     @Override
     public String toString() {
         return "Solicitante{" +
-                "motivo='" + motivo + '\'' +
+                "motivo=' " + motivo + '\'' +
                 '}';
     }
 

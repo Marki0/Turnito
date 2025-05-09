@@ -18,5 +18,6 @@
         <many-to-one name="profesional" class="com.turnito.modelo.Profesional" column="profesional_id" not-null="true"/>
         <many-to-one name="solicitante" class="com.turnito.modelo.Solicitante" column="solicitante_id" not-null="true"/>
         <many-to-one name="servicio" class="com.turnito.modelo.Servicio" column="servicio_id" not-null="true"/>
+
     </class>
 </hibernate-mapping>
