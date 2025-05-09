@@ -19,7 +19,7 @@ public class TestTurno {
         UsuarioABM abmUsuario = new UsuarioABM();
         ServicioABM abmServicio = new ServicioABM();
         ProfesionalABM abmProfesional = new ProfesionalABM();
-
+  
         try {
             // Agregar Profesional
             Profesional profesional = new Profesional("Carlos", "2345", "1234567890", 123456L, "F123", "Cardiologo");
